@@ -1,0 +1,30 @@
+language: python
+
+sudo: false
+
+matrix:
+  include:
+    - os: linux
+      compiler: gcc
+      addons: &gcc49
+        apt:
+          sources: ['ubuntu-toolchain-r-test']
+          packages: ['g++-4.9', 'gcc-4.9', 'gfortran-4.9']
+      env:
+        - CXX='g++-4.9'
+        - CC='gcc-4.9'
+        - FC='gfortran-4.9'
+
+install:
+  - pip install -r requirements.txt
+
+script:
+  - mkdir build
+  - cd build
+  - cmake ..
+  - make
+  - cd ..
+  - pep8 test/test.py
+
+notifications:
+  email: false
