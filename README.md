@@ -4,8 +4,8 @@
 
 # context-api-example
 
-Shows how to implement context-aware APIs in different languages,
-inspired by Armin Ronacher's
+Shows how to implement and use context-aware APIs in C++, Fortran, and Python.
+Inspired by Armin Ronacher's
 ["Beautiful Native Libraries"](http://lucumr.pocoo.org/2013/8/18/beautiful-native-libraries/).
 
 
