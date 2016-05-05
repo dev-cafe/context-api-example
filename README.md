@@ -12,6 +12,9 @@ inspired by Armin Ronacher's
 ## How to build this demo
 
 ```
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
 mkdir build
 cd build
 cmake ..
