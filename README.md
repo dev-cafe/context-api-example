@@ -8,6 +8,8 @@ Shows how to implement and use context-aware APIs in C++, Fortran, and Python.
 Inspired by Armin Ronacher's
 ["Beautiful Native Libraries"](http://lucumr.pocoo.org/2013/8/18/beautiful-native-libraries/).
 
+Comments, contributions, and improvements are most welcome!
+
 
 ## How to build and run this demo
 
@@ -34,7 +36,7 @@ PROJECT_BUILD_DIR=$PWD/build PROJECT_INCLUDE_DIR=$PWD/api PYTHONPATH=$PWD/api py
 |-- src
 |   |-- bank.cpp    (C++ library)
 |   |-- bank.f90    (Fortran library)
-|   `-- bank.h
+|   `-- bank.h      (C++ library)
 `-- test
     |-- test.cpp    (C++ client)
     |-- test.f90    (Fortran client)
