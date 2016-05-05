@@ -9,7 +9,7 @@ inspired by Armin Ronacher's
 ["Beautiful Native Libraries"](http://lucumr.pocoo.org/2013/8/18/beautiful-native-libraries/).
 
 
-## How to build this demo
+## How to build and run this demo
 
 ```
 python3 -m venv venv
