@@ -9,3 +9,9 @@ include_directories(${PROJECT_SOURCE_DIR}/api)
 
 add_library(c_example SHARED src/bank.cpp)
 add_library(f_example SHARED src/bank.f90)
+
+add_executable(c_testing_c test/test.cpp)
+target_link_libraries(c_testing_c c_example)
+
+add_executable(c_testing_f test/test.cpp)
+target_link_libraries(c_testing_f f_example)
