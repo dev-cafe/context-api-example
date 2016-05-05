@@ -59,7 +59,7 @@ contains
 
     real(c_double) function example_get_balance(context) bind (c)
         use, intrinsic :: iso_c_binding, only: c_f_pointer
-        type(c_ptr), value :: context
+        type(c_ptr), value, intent(in) :: context
         type(account), pointer :: f_context
 
         call c_f_pointer(context, f_context)
@@ -68,7 +68,7 @@ contains
 
     subroutine example_print_history(context) bind (c)
         use, intrinsic :: iso_c_binding, only: c_f_pointer
-        type(c_ptr), value :: context
+        type(c_ptr), value, intent(in) :: context
         type(account), pointer :: f_context
         integer :: i
 
