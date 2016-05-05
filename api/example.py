@@ -34,11 +34,11 @@ def get_lib_handle(definitions, header, library, build_dir, include_dir):
 build_dir = get_env('PROJECT_BUILD_DIR')
 include_dir = get_env('PROJECT_INCLUDE_DIR')
 
-#c_lib = get_lib_handle(['-DEXAMPLE_API=', '-DEXAMPLE_NOINCLUDE'],
-#                       'example.h',
-#                       'c_example',
-#                       build_dir,
-#                       include_dir)
+c_lib = get_lib_handle(['-DEXAMPLE_API=', '-DEXAMPLE_NOINCLUDE'],
+                       'example.h',
+                       'c_example',
+                       build_dir,
+                       include_dir)
 
 f_lib = get_lib_handle(['-DEXAMPLE_API=', '-DEXAMPLE_NOINCLUDE'],
                        'example.h',

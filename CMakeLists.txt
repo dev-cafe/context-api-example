@@ -7,5 +7,5 @@ enable_language(Fortran)
 
 include_directories(${PROJECT_SOURCE_DIR}/api)
 
-#add_library(c_example SHARED src/bank.cpp)
+add_library(c_example SHARED src/bank.cpp)
 add_library(f_example SHARED src/bank.f90)

@@ -21,3 +21,8 @@ def _example(lib):
 def test_fortran():
     from example import f_lib
     _example(f_lib)
+
+
+def test_cpp():
+    from example import c_lib
+    _example(c_lib)
