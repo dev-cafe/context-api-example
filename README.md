@@ -22,3 +22,21 @@ make
 cd ..
 PROJECT_BUILD_DIR=$PWD/build PROJECT_INCLUDE_DIR=$PWD/api PYTHONPATH=$PWD/api py.test test/test.py
 ```
+
+
+## File description
+
+```
+.
+|-- api
+|   |-- example.h   (C interface)
+|   `-- example.py  (Python interface)
+|-- src
+|   |-- bank.cpp    (C++ library)
+|   |-- bank.f90    (Fortran library)
+|   `-- bank.h
+`-- test
+    |-- test.cpp    (C++ client)
+    |-- test.f90    (Fortran client)
+    `-- test.py     (Python client; automatically tested)
+```
