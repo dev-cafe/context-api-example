@@ -15,3 +15,9 @@ target_link_libraries(c_testing_c c_example)
 
 add_executable(c_testing_f test/test.cpp)
 target_link_libraries(c_testing_f f_example)
+
+add_executable(f_testing_c test/test.f90)
+target_link_libraries(f_testing_c c_example)
+
+add_executable(f_testing_f test/test.f90)
+target_link_libraries(f_testing_f f_example)
