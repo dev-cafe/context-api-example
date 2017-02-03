@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/bast/context-api-example.svg?branch=master)](https://travis-ci.org/bast/context-api-example/builds)
-[![License](https://img.shields.io/badge/license-%20BSD--3-blue.svg)](../master/LICENSE)
+[![License](https://img.shields.io/badge/license-%20MPL--v2.0-blue.svg)](../master/LICENSE)
 
 
 # context-api-example
