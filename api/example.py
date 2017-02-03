@@ -1,6 +1,10 @@
+import sys
+import os
+from subprocess import Popen, PIPE
+from cffi import FFI
+
+
 def get_env(v):
-    import sys
-    import os
     _v = os.getenv(v)
     if _v is None:
         sys.stderr.write('Error: Environment variable {0} is undefined\n'.format(v))
@@ -9,7 +13,6 @@ def get_env(v):
 
 
 def get_library_suffix():
-    import sys
     if sys.platform == "darwin":
         return 'dylib'
     else:
@@ -17,9 +20,6 @@ def get_library_suffix():
 
 
 def get_lib_handle(definitions, header, library, build_dir, include_dir):
-    import os
-    from subprocess import Popen, PIPE
-    from cffi import FFI
     ffi = FFI()
 
     interface = Popen(['cc', '-E'] + definitions + [os.path.join(include_dir, header)],
