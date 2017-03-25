@@ -5,21 +5,19 @@
 
 class Bank
 {
-    public:
+  public:
+    Bank();
+    ~Bank();
 
-        Bank();
-        ~Bank();
+    void deposit(const double f);
+    double get_balance() const;
+    void print_history() const;
 
-        void deposit(const double f);
-        double get_balance() const;
-        void print_history() const;
+  private:
+    Bank(const Bank &rhs);            // not implemented
+    Bank &operator=(const Bank &rhs); // not implemented
 
-    private:
-
-        Bank(const Bank &rhs);            // not implemented
-        Bank &operator=(const Bank &rhs); // not implemented
-
-        std::vector<double> history;
+    std::vector<double> history;
 };
 
 #endif
