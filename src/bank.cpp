@@ -1,6 +1,7 @@
 #include <cstdio>
 #include <fstream>
 #include <numeric>
+#include <stdlib.h>
 
 #include "bank.h"
 #include "example.h"
