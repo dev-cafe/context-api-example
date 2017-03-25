@@ -5,6 +5,8 @@ project(example)
 enable_language(CXX)
 enable_language(Fortran)
 
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+
 include_directories(${PROJECT_SOURCE_DIR}/api)
 
 add_library(c_example SHARED src/bank.cpp)
