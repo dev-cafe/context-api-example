@@ -18,6 +18,8 @@ module example
         real(c_double), allocatable :: history(:)
     end type
 
+    logical :: is_initialized = .false.
+
 contains
 
     type(c_ptr) function example_new() bind (c)
@@ -28,6 +30,7 @@ contains
         allocate(f_context)
         context = c_loc(f_context)
         example_new = context
+        is_initialized = .true.
     end function
 
     subroutine example_free(context) bind (c)
@@ -38,6 +41,14 @@ contains
         call c_f_pointer(context, f_context)
         deallocate(f_context%history)
         deallocate(f_context)
+        is_initialized = .false.
+    end subroutine
+
+    subroutine check_that_context_is_initialized()
+        if (.not. is_initialized) then
+            print *, 'ERROR: context is not initialized'
+            stop 1
+        end if
     end subroutine
 
     subroutine example_deposit(context, f) bind (c)
@@ -46,6 +57,7 @@ contains
         real(c_double), value :: f
         type(account), pointer :: f_context
 
+        call check_that_context_is_initialized()
         call c_f_pointer(context, f_context)
         call append(f_context%history, f)
     end subroutine
@@ -54,6 +66,7 @@ contains
         type(c_ptr), value :: context
         real(c_double), value :: f
 
+        call check_that_context_is_initialized()
         call example_deposit(context, -f)
     end subroutine
 
@@ -62,6 +75,7 @@ contains
         type(c_ptr), value, intent(in) :: context
         type(account), pointer :: f_context
 
+        call check_that_context_is_initialized()
         call c_f_pointer(context, f_context)
         example_get_balance = sum(f_context%history)
     end function
@@ -72,6 +86,7 @@ contains
         type(account), pointer :: f_context
         integer :: i
 
+        call check_that_context_is_initialized()
         call c_f_pointer(context, f_context)
         print *, 'transaction history:'
         do i = 1, size(f_context%history)

@@ -1,4 +1,5 @@
 #include <cstdio>
+#include <fstream>
 #include <numeric>
 
 #include "bank.h"
@@ -11,7 +12,7 @@ example_context_t *example_new()
 {
     return AS_TYPE(example_context_t, new Bank());
 }
-Bank::Bank() {}
+Bank::Bank() { is_initialized = true; }
 
 void example_free(example_context_t *context)
 {
@@ -19,7 +20,20 @@ void example_free(example_context_t *context)
         return;
     delete AS_TYPE(Bank, context);
 }
-Bank::~Bank() { history.clear(); }
+Bank::~Bank()
+{
+    is_initialized = false;
+    history.clear();
+}
+
+void Bank::check_that_context_is_initialized() const
+{
+    if (not is_initialized)
+    {
+        fprintf(stderr, "ERROR: context is not initialized\n");
+        exit(-1);
+    }
+}
 
 void example_deposit(example_context_t *context, const double f)
 {
@@ -29,7 +43,11 @@ void example_withdraw(example_context_t *context, const double f)
 {
     return AS_TYPE(Bank, context)->deposit(-f);
 }
-void Bank::deposit(const double f) { history.push_back(f); }
+void Bank::deposit(const double f)
+{
+    check_that_context_is_initialized();
+    history.push_back(f);
+}
 
 double example_get_balance(const example_context_t *context)
 {
@@ -37,6 +55,7 @@ double example_get_balance(const example_context_t *context)
 }
 double Bank::get_balance() const
 {
+    check_that_context_is_initialized();
     return std::accumulate(history.begin(), history.end(), 0.0);
 }
 
@@ -46,6 +65,7 @@ void example_print_history(const example_context_t *context)
 }
 void Bank::print_history() const
 {
+    check_that_context_is_initialized();
     printf("transaction history:\n");
     for (int i = 0; i < history.size(); i++)
     {

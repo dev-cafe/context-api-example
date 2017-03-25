@@ -18,6 +18,9 @@ class Bank
     Bank &operator=(const Bank &rhs); // not implemented
 
     std::vector<double> history;
+
+    void check_that_context_is_initialized() const;
+    bool is_initialized = false;
 };
 
 #endif
