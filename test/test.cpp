@@ -1,5 +1,4 @@
 #include <cassert>
-#include <cstdio>
 
 #include "example.h"
 
@@ -23,8 +22,6 @@ int main()
 
     example_free(account1);
     example_free(account2);
-
-    printf("test passed\n");
 
     return 0;
 }

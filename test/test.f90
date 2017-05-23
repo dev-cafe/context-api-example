@@ -55,7 +55,6 @@ end module
 
 program test
 
-
     use example_interface, only: example_new, &
                                  example_free, &
                                  example_deposit, &
@@ -66,8 +65,8 @@ program test
 
     implicit none
 
-    type(c_ptr)          :: account1
-    type(c_ptr)          :: account2
+    type(c_ptr) :: account1
+    type(c_ptr) :: account2
 
     account1 = example_new()
 
@@ -92,7 +91,5 @@ program test
 
     call example_free(account1)
     call example_free(account2)
-
-    print *, "test passed"
 
 end program
