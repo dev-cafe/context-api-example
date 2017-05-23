@@ -34,7 +34,7 @@ cd ..
 ### Test the Python interface
 
 ```
-PROJECT_BUILD_DIR=$PWD/build PROJECT_INCLUDE_DIR=$PWD/api PYTHONPATH=$PWD/api py.test test/test.py
+PROJECT_BUILD_DIR=$PWD/build PROJECT_INCLUDE_DIR=$PWD/api PYTHONPATH=$PWD/api pytest -vv test/test.py
 ```
 
 
