@@ -2,21 +2,8 @@
 #define EXAMPLE_H_INCLUDED
 
 #ifndef EXAMPLE_API
-#    ifdef _WIN32
-#        if defined(EXAMPLE_BUILD_SHARED) /* build dll */
-#            define EXAMPLE_API __declspec(dllexport)
-#        elif !defined(EXAMPLE_BUILD_STATIC) /* use dll */
-#            define EXAMPLE_API __declspec(dllimport)
-#        else /* static library */
-#            define EXAMPLE_API
-#        endif
-#    else
-#        if __GNUC__ >= 4
-#            define EXAMPLE_API __attribute__((visibility("default")))
-#        else
-#            define EXAMPLE_API
-#        endif
-#    endif
+#include "c_example_export.h"
+#define EXAMPLE_API C_EXAMPLE_EXPORT
 #endif
 
 #ifdef __cplusplus
