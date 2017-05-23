@@ -14,7 +14,8 @@ module example
 
     type :: account
         private
-        real(c_double), allocatable :: history(:)
+        real(c_double) :: balance
+        ! it is possible to have allocatable arrays here
     end type
 
     logical :: is_initialized = .false.
@@ -38,7 +39,7 @@ contains
         type(account), pointer :: f_context
 
         call c_f_pointer(context, f_context)
-        deallocate(f_context%history)
+        f_context%balance = 0.0
         deallocate(f_context)
         is_initialized = .false.
     end subroutine
@@ -58,7 +59,7 @@ contains
 
         call check_that_context_is_initialized()
         call c_f_pointer(context, f_context)
-        call append(f_context%history, f)
+        f_context%balance = f_context%balance + f
     end subroutine
 
     subroutine example_withdraw(context, f) bind (c)
@@ -76,25 +77,7 @@ contains
 
         call check_that_context_is_initialized()
         call c_f_pointer(context, f_context)
-        example_get_balance = sum(f_context%history)
+        example_get_balance = f_context%balance
     end function
-
-    subroutine append(v, f)
-        ! this is not an efficient way of doing this
-        ! but it does not matter for this example
-        real(c_double), allocatable :: v(:)
-        real(c_double), intent(in) :: f
-        real(c_double), allocatable :: v_local(:)
-
-        if (allocated(v)) then
-            allocate(v_local(size(v) + 1))
-            v_local(1:size(v)) = v
-            v_local(size(v) + 1) = f
-            call move_alloc(v_local, v)
-        else
-            allocate(v(1))
-            v(1) = f
-        end if
-    end subroutine
 
 end module

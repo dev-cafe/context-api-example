@@ -24,7 +24,7 @@ void example_free(example_context_t *context)
 Bank::~Bank()
 {
     is_initialized = false;
-    history.clear();
+    balance = 0.0;
 }
 
 void Bank::check_that_context_is_initialized() const
@@ -47,7 +47,7 @@ void example_withdraw(example_context_t *context, const double f)
 void Bank::deposit(const double f)
 {
     check_that_context_is_initialized();
-    history.push_back(f);
+    balance += f;
 }
 
 double example_get_balance(const example_context_t *context)
@@ -57,5 +57,5 @@ double example_get_balance(const example_context_t *context)
 double Bank::get_balance() const
 {
     check_that_context_is_initialized();
-    return std::accumulate(history.begin(), history.end(), 0.0);
+    return balance;
 }
