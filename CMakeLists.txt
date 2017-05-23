@@ -1,9 +1,6 @@
 cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
 
-project(example)
-
-enable_language(CXX)
-enable_language(Fortran)
+project(example CXX Fortran)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
