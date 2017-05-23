@@ -15,26 +15,31 @@ Comments, contributions, and improvements are most welcome!
 
 ### Install Python dependencies
 
-```
-virtualenv venv
-source venv/bin/activate
-pip install -r requirements.txt
+```shell
+$ virtualenv venv
+$ source venv/bin/activate
+$ pip install -r requirements.txt
 ```
 
 ### Configure and build the compiled code
 
+```shell
+$ mkdir build
+$ cd build
+$ cmake ..
+$ make
 ```
-mkdir build
-cd build
-cmake ..
-make
-cd ..
+
+### Test the C++/Fortran interfaces
+
+```shell
+$ make test
 ```
 
 ### Test the Python interface
 
-```
-PROJECT_BUILD_DIR=$PWD/build PROJECT_INCLUDE_DIR=$PWD/api PYTHONPATH=$PWD/api pytest -vv test/test.py
+```shell
+$ PROJECT_BUILD_DIR=$PWD/build PROJECT_INCLUDE_DIR=$PWD/api PYTHONPATH=$PWD/api pytest -vv test/test.py
 ```
 
 
