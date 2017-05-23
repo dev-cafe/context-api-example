@@ -13,15 +13,27 @@ Comments, contributions, and improvements are most welcome!
 
 ## How to build and run this demo
 
+### Install Python dependencies
+
 ```
-python3 -m venv venv
+virtualenv venv
 source venv/bin/activate
 pip install -r requirements.txt
+```
+
+### Configure and build the compiled code
+
+```
 mkdir build
 cd build
 cmake ..
 make
 cd ..
+```
+
+### Test the Python interface
+
+```
 PROJECT_BUILD_DIR=$PWD/build PROJECT_INCLUDE_DIR=$PWD/api PYTHONPATH=$PWD/api py.test test/test.py
 ```
 
