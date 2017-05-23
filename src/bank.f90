@@ -11,7 +11,6 @@ module example
     public example_deposit
     public example_withdraw
     public example_get_balance
-    public example_print_history
 
     type :: account
         private
@@ -79,20 +78,6 @@ contains
         call c_f_pointer(context, f_context)
         example_get_balance = sum(f_context%history)
     end function
-
-    subroutine example_print_history(context) bind (c)
-        use, intrinsic :: iso_c_binding, only: c_f_pointer
-        type(c_ptr), value, intent(in) :: context
-        type(account), pointer :: f_context
-        integer :: i
-
-        call check_that_context_is_initialized()
-        call c_f_pointer(context, f_context)
-        print *, 'transaction history:'
-        do i = 1, size(f_context%history)
-            print *, f_context%history(i)
-        end do
-    end subroutine
 
     subroutine append(v, f)
         ! this is not an efficient way of doing this

@@ -11,7 +11,6 @@ class Bank
 
     void deposit(const double f);
     double get_balance() const;
-    void print_history() const;
 
   private:
     Bank(const Bank &rhs);            // not implemented

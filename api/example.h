@@ -18,7 +18,6 @@ EXAMPLE_API void example_free(example_context_t *context);
 EXAMPLE_API void example_deposit(example_context_t *context, const double f);
 EXAMPLE_API void example_withdraw(example_context_t *context, const double f);
 EXAMPLE_API double example_get_balance(const example_context_t *context);
-EXAMPLE_API void example_print_history(const example_context_t *context);
 
 #ifdef __cplusplus
 }

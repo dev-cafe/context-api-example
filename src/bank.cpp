@@ -59,17 +59,3 @@ double Bank::get_balance() const
     check_that_context_is_initialized();
     return std::accumulate(history.begin(), history.end(), 0.0);
 }
-
-void example_print_history(const example_context_t *context)
-{
-    return AS_CTYPE(Bank, context)->print_history();
-}
-void Bank::print_history() const
-{
-    check_that_context_is_initialized();
-    printf("transaction history:\n");
-    for (int i = 0; i < history.size(); i++)
-    {
-        printf("    %f\n", history[i]);
-    }
-}
