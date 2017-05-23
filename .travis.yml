@@ -16,7 +16,7 @@ matrix:
         - FC='gfortran-4.9'
 
 install:
-  - pip install -r requirements.txt
+  - pip install -r requirements.txt --upgrade
 
 script:
   - mkdir build
