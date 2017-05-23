@@ -47,15 +47,20 @@ $ PROJECT_BUILD_DIR=$PWD/build PROJECT_INCLUDE_DIR=$PWD/api PYTHONPATH=$PWD/api 
 
 ```
 .
+|-- CMakeLists.txt
+|-- LICENSE
+|-- README.md
 |-- api
-|   |-- example.h   (C interface)
-|   `-- example.py  (Python interface)
+|   |-- cffi_helpers.py  (CFFI boilerplate code)
+|   |-- example.h        (C interface)
+|   `-- example.py       (Python interface)
+|-- requirements.txt
 |-- src
-|   |-- bank.cpp    (C++ library)
-|   |-- bank.f90    (Fortran library)
-|   `-- bank.h      (C++ library)
+|   |-- bank.cpp         (C++ library)
+|   |-- bank.f90         (Fortran library)
+|   `-- bank.h           (C++ library)
 `-- test
-    |-- test.cpp    (C++ client)
-    |-- test.f90    (Fortran client)
-    `-- test.py     (Python client; automatically tested)
+    |-- test.cpp         (C++ client)
+    |-- test.f90         (Fortran client)
+    `-- test.py          (Python client)
 ```
