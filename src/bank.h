@@ -1,5 +1,4 @@
-#ifndef BANK_H_INCLUDED
-#define BANK_H_INCLUDED
+#pragma once
 
 class Bank
 {
@@ -19,5 +18,3 @@ class Bank
     void check_that_context_is_initialized() const;
     bool is_initialized = false;
 };
-
-#endif
