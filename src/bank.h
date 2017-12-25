@@ -7,13 +7,13 @@ class Bank
     Bank();
     ~Bank();
 
+    Bank(const Bank &rhs) = delete;
+    Bank &operator=(const Bank &rhs) = delete;
+
     void deposit(const double f);
     double get_balance() const;
 
   private:
-    Bank(const Bank &rhs);            // not implemented
-    Bank &operator=(const Bank &rhs); // not implemented
-
     double balance;
 
     void check_that_context_is_initialized() const;
