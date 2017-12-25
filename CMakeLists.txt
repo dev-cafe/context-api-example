@@ -13,7 +13,6 @@ include_directories(${PROJECT_BINARY_DIR})
 add_library(c_example SHARED src/bank.cpp)
 add_library(f_example SHARED src/bank.f90)
 
-include(CTest)
 enable_testing()
 
 add_executable(c_testing_c test/test.cpp)
