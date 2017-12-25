@@ -36,7 +36,7 @@ install:
   - |
     if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then
         # manually install python on osx
-        brew update
+        brew update &> /dev/null
         brew install python3
         brew reinstall gcc
         virtualenv venv
