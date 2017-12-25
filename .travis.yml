@@ -56,7 +56,7 @@ script:
   - make
   - make test
   - cd ..
-  - PROJECT_BUILD_DIR=$PWD/build PROJECT_INCLUDE_DIR=$PWD/api PYTHONPATH=$PWD/api pytest -vv test/test.py
+  - PROJECT_BUILD_DIR=$PWD/build PROJECT_INCLUDE_DIR=$PWD/account PYTHONPATH=$PWD/account pytest -vv test/test.py
 
 notifications:
   email: false
