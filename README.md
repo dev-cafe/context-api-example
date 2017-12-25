@@ -55,10 +55,10 @@ $ PROJECT_BUILD_DIR=$PWD/build PROJECT_INCLUDE_DIR=$PWD/api PYTHONPATH=$PWD/api 
 |   |-- example.h        (C interface)
 |   `-- example.py       (Python interface)
 |-- requirements.txt
-|-- src
-|   |-- bank.cpp         (C++ library)
-|   |-- bank.f90         (Fortran library)
-|   `-- bank.h           (C++ library)
+|-- account
+|   |-- account.cpp      (C++ library)
+|   |-- account.f90      (Fortran library)
+|   `-- account.h        (C++ library)
 `-- test
     |-- test.cpp         (C++ client)
     |-- test.f90         (Fortran client)

@@ -3,7 +3,7 @@
 #include <numeric>
 #include <stdlib.h>
 
-#include "bank.h"
+#include "account.h"
 #include "example.h"
 
 #define AS_TYPE(Type, Obj) reinterpret_cast<Type *>(Obj)
@@ -11,23 +11,23 @@
 
 example_context_t *example_new()
 {
-    return AS_TYPE(example_context_t, new Bank());
+    return AS_TYPE(example_context_t, new Account());
 }
-Bank::Bank() { is_initialized = true; }
+Account::Account() { is_initialized = true; }
 
 void example_free(example_context_t *context)
 {
     if (!context)
         return;
-    delete AS_TYPE(Bank, context);
+    delete AS_TYPE(Account, context);
 }
-Bank::~Bank()
+Account::~Account()
 {
     is_initialized = false;
     balance = 0.0;
 }
 
-void Bank::check_that_context_is_initialized() const
+void Account::check_that_context_is_initialized() const
 {
     if (not is_initialized)
     {
@@ -38,13 +38,13 @@ void Bank::check_that_context_is_initialized() const
 
 void example_deposit(example_context_t *context, const double f)
 {
-    return AS_TYPE(Bank, context)->deposit(f);
+    return AS_TYPE(Account, context)->deposit(f);
 }
 void example_withdraw(example_context_t *context, const double f)
 {
-    return AS_TYPE(Bank, context)->deposit(-f);
+    return AS_TYPE(Account, context)->deposit(-f);
 }
-void Bank::deposit(const double f)
+void Account::deposit(const double f)
 {
     check_that_context_is_initialized();
     balance += f;
@@ -52,9 +52,9 @@ void Bank::deposit(const double f)
 
 double example_get_balance(const example_context_t *context)
 {
-    return AS_CTYPE(Bank, context)->get_balance();
+    return AS_CTYPE(Account, context)->get_balance();
 }
-double Bank::get_balance() const
+double Account::get_balance() const
 {
     check_that_context_is_initialized();
     return balance;

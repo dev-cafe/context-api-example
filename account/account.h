@@ -1,13 +1,13 @@
 #pragma once
 
-class Bank
+class Account
 {
   public:
-    Bank();
-    ~Bank();
+    Account();
+    ~Account();
 
-    Bank(const Bank &rhs) = delete;
-    Bank &operator=(const Bank &rhs) = delete;
+    Account(const Account &rhs) = delete;
+    Account &operator=(const Account &rhs) = delete;
 
     void deposit(const double f);
     double get_balance() const;

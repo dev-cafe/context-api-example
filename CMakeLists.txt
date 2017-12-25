@@ -10,8 +10,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 include_directories(${PROJECT_SOURCE_DIR}/api)
 include_directories(${PROJECT_BINARY_DIR})
 
-add_library(c_example SHARED src/bank.cpp)
-add_library(f_example SHARED src/bank.f90)
+add_library(c_example SHARED account/account.cpp)
+add_library(f_example SHARED account/account.f90)
 
 enable_testing()
 
