@@ -30,6 +30,7 @@ contains
         allocate(f_context)
         context = c_loc(f_context)
         example_new = context
+        f_context%balance = 0.0d0
         is_initialized = .true.
     end function
 
@@ -39,7 +40,7 @@ contains
         type(account), pointer :: f_context
 
         call c_f_pointer(context, f_context)
-        f_context%balance = 0.0
+        f_context%balance = 0.0d0
         deallocate(f_context)
         is_initialized = .false.
     end subroutine

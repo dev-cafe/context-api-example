@@ -13,7 +13,11 @@ example_context_t *example_new()
 {
     return AS_TYPE(example_context_t, new Account());
 }
-Account::Account() { is_initialized = true; }
+Account::Account()
+{
+    balance = 0.0;
+    is_initialized = true;
+}
 
 void example_free(example_context_t *context)
 {
@@ -23,8 +27,8 @@ void example_free(example_context_t *context)
 }
 Account::~Account()
 {
-    is_initialized = false;
     balance = 0.0;
+    is_initialized = false;
 }
 
 void Account::check_that_context_is_initialized() const
