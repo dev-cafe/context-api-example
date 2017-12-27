@@ -6,7 +6,7 @@ import sys
 def get_env(v):
     _v = os.getenv(v)
     if _v is None:
-        sys.stderr.write('Error: Environment variable {0} is undefined\n'.format(v))
+        sys.stderr.write('ERROR: variable {0} is undefined\n'.format(v))
         sys.exit(1)
     return _v
 

@@ -47,6 +47,7 @@ install:
   - python --version
 
 before_script:
+  - pycodestyle account/
   - pycodestyle test/test.py
 
 script:
