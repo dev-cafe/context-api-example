@@ -1,4 +1,4 @@
-module example
+module account_implementation
 
     use, intrinsic :: iso_c_binding, only: c_double, c_ptr
 
