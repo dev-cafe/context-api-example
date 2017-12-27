@@ -15,7 +15,7 @@ target_include_directories(
     ${PROJECT_BINARY_DIR}
     ${PROJECT_SOURCE_DIR}/account
     )
-target_link_libraries(c_testing_f f_account)
+target_link_libraries(c_testing_f fortran_account)
 add_test(c_testing_f ${PROJECT_BINARY_DIR}/test/c_testing_f)
 
 add_executable(f_testing_c test.f90)
@@ -33,5 +33,5 @@ target_include_directories(
     PUBLIC
     ${PROJECT_BINARY_DIR}/account
     )
-target_link_libraries(f_testing_f f_account fortran_c_interface)
+target_link_libraries(f_testing_f fortran_account fortran_c_interface)
 add_test(f_testing_f ${PROJECT_BINARY_DIR}/test/f_testing_f)

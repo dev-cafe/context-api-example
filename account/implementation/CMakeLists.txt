@@ -12,4 +12,4 @@ target_include_directories(
     ${PROJECT_SOURCE_DIR}/account
     )
 
-add_library(f_account SHARED fortran_implementation.f90)
+add_library(fortran_account SHARED fortran_implementation.f90)

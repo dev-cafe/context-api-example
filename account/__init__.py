@@ -22,6 +22,6 @@ c_lib = get_lib_handle(['-DACCOUNT_API=', '-DACCOUNT_NOINCLUDE'],
 
 f_lib = get_lib_handle(['-DACCOUNT_API=', '-DACCOUNT_NOINCLUDE'],
                        'account.h',
-                       'f_account',
+                       'fortran_account',
                        build_dir,
                        include_dir)
