@@ -4,12 +4,12 @@
 
 int main()
 {
-    Account *account1 = account_new();
+    account_context_t *account1 = account_new();
 
     account_deposit(account1, 100.0);
     account_deposit(account1, 100.0);
 
-    Account *account2 = account_new();
+    account_context_t *account2 = account_new();
 
     account_deposit(account2, 200.0);
     account_deposit(account2, 200.0);

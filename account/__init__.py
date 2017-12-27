@@ -11,7 +11,7 @@ def get_env(v):
     return _v
 
 
-build_dir = get_env('PROJECT_BUILD_DIR')
+build_dir = os.path.join(get_env('PROJECT_BUILD_DIR'), 'lib')
 include_dir = get_env('PROJECT_INCLUDE_DIR')
 
 c_lib = get_lib_handle(['-DACCOUNT_API=', '-DACCOUNT_NOINCLUDE'],
