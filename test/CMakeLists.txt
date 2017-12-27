@@ -1,37 +1,37 @@
 add_executable(c_testing_c test.cpp)
 target_include_directories(
     c_testing_c
-    PUBLIC
+    PRIVATE
     ${PROJECT_BINARY_DIR}
     ${PROJECT_SOURCE_DIR}/account
     )
 target_link_libraries(c_testing_c c_account)
-add_test(c_testing_c ${PROJECT_BINARY_DIR}/test/c_testing_c)
 
-add_executable(c_testing_f test.cpp)
+add_executable(c_testing_fortran test.cpp)
 target_include_directories(
-    c_testing_f
-    PUBLIC
+    c_testing_fortran
+    PRIVATE
     ${PROJECT_BINARY_DIR}
     ${PROJECT_SOURCE_DIR}/account
     )
-target_link_libraries(c_testing_f fortran_account)
-add_test(c_testing_f ${PROJECT_BINARY_DIR}/test/c_testing_f)
+target_link_libraries(c_testing_fortran fortran_account)
 
-add_executable(f_testing_c test.f90)
+add_executable(fortran_testing_c test.f90)
 target_include_directories(
-    f_testing_c
-    PUBLIC
+    fortran_testing_c
+    PRIVATE
     ${PROJECT_BINARY_DIR}/account
     )
-target_link_libraries(f_testing_c c_account fortran_c_interface)
-add_test(f_testing_c ${PROJECT_BINARY_DIR}/test/f_testing_c)
+target_link_libraries(fortran_testing_c c_account fortran_c_interface)
 
-add_executable(f_testing_f test.f90)
+add_executable(fortran_testing_fortran test.f90)
 target_include_directories(
-    f_testing_f
-    PUBLIC
+    fortran_testing_fortran
+    PRIVATE
     ${PROJECT_BINARY_DIR}/account
     )
-target_link_libraries(f_testing_f fortran_account fortran_c_interface)
-add_test(f_testing_f ${PROJECT_BINARY_DIR}/test/f_testing_f)
+target_link_libraries(fortran_testing_fortran fortran_account fortran_c_interface)
+
+foreach(_test c_testing_c c_testing_fortran fortran_testing_c fortran_testing_fortran)
+    add_test(${_test} ${PROJECT_BINARY_DIR}/test/${_test})
+endforeach()
