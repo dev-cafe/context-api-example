@@ -11,17 +11,18 @@ def get_env(v):
     return _v
 
 
-build_dir = os.path.join(get_env('PROJECT_BUILD_DIR'), 'lib')
-include_dir = get_env('PROJECT_INCLUDE_DIR')
+_library_dir = os.path.join(get_env('ACCOUNT_BUILD_DIR'), 'lib')
+_this_path = os.path.dirname(os.path.realpath(__file__))
+_include_dir = _this_path
 
 c_lib = get_lib_handle(['-DACCOUNT_API=', '-DACCOUNT_NOINCLUDE'],
                        'account.h',
                        'c_account',
-                       build_dir,
-                       include_dir)
+                       _library_dir,
+                       _include_dir)
 
 f_lib = get_lib_handle(['-DACCOUNT_API=', '-DACCOUNT_NOINCLUDE'],
                        'account.h',
                        'fortran_account',
-                       build_dir,
-                       include_dir)
+                       _library_dir,
+                       _include_dir)
