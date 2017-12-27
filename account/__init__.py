@@ -14,14 +14,14 @@ def get_env(v):
 build_dir = get_env('PROJECT_BUILD_DIR')
 include_dir = get_env('PROJECT_INCLUDE_DIR')
 
-c_lib = get_lib_handle(['-DEXAMPLE_API=', '-DEXAMPLE_NOINCLUDE'],
+c_lib = get_lib_handle(['-DACCOUNT_API=', '-DACCOUNT_NOINCLUDE'],
                        'account.h',
-                       'c_example',
+                       'c_account',
                        build_dir,
                        include_dir)
 
-f_lib = get_lib_handle(['-DEXAMPLE_API=', '-DEXAMPLE_NOINCLUDE'],
+f_lib = get_lib_handle(['-DACCOUNT_API=', '-DACCOUNT_NOINCLUDE'],
                        'account.h',
-                       'f_example',
+                       'f_account',
                        build_dir,
                        include_dir)

@@ -1,20 +1,20 @@
-#ifndef EXAMPLE_H_INCLUDED
-#define EXAMPLE_H_INCLUDED
+#ifndef ACCOUNT_H_INCLUDED
+#define ACCOUNT_H_INCLUDED
 
-#ifndef EXAMPLE_API
-#include "c_example_export.h"
-#define EXAMPLE_API C_EXAMPLE_EXPORT
+#ifndef ACCOUNT_API
+#include "c_account_export.h"
+#define ACCOUNT_API C_ACCOUNT_EXPORT
 #endif
 
 #ifdef __cplusplus
-class example_context_t
+class Account
 {
   public:
-    example_context_t();
-    ~example_context_t();
+    Account();
+    ~Account();
 
-    example_context_t(const example_context_t &rhs) = delete;
-    example_context_t &operator=(const example_context_t &rhs) = delete;
+    Account(const Account &rhs) = delete;
+    Account &operator=(const Account &rhs) = delete;
 
     void deposit(const double amount);
     void withdraw(const double amount);
@@ -27,32 +27,31 @@ class example_context_t
     bool is_initialized = false;
 };
 #else
-//#ifndef __cplusplus
-struct example_context_s;
-typedef struct example_context_s example_context_t;
+struct account_context;
+typedef struct account_context Account;
 #endif
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-EXAMPLE_API
-example_context_t *example_new();
+ACCOUNT_API
+Account *account_new();
 
-EXAMPLE_API
-void example_free(example_context_t *context);
+ACCOUNT_API
+void account_free(Account *context);
 
-EXAMPLE_API
-void example_deposit(example_context_t *context, const double amount);
+ACCOUNT_API
+void account_deposit(Account *context, const double amount);
 
-EXAMPLE_API
-void example_withdraw(example_context_t *context, const double amount);
+ACCOUNT_API
+void account_withdraw(Account *context, const double amount);
 
-EXAMPLE_API
-double example_get_balance(const example_context_t *context);
+ACCOUNT_API
+double account_get_balance(const Account *context);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* EXAMPLE_H_INCLUDED */
+#endif /* ACCOUNT_H_INCLUDED */

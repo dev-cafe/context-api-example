@@ -8,28 +8,28 @@
 #define AS_TYPE(Type, Obj) reinterpret_cast<Type *>(Obj)
 #define AS_CTYPE(Type, Obj) reinterpret_cast<const Type *>(Obj)
 
-example_context_t *example_new()
+Account *account_new()
 {
-    return AS_TYPE(example_context_t, new example_context_t());
+    return AS_TYPE(Account, new Account());
 }
-example_context_t::example_context_t()
+Account::Account()
 {
     balance = 0.0;
     is_initialized = true;
 }
 
-void example_free(example_context_t *context)
+void account_free(Account *context)
 {
-    delete AS_TYPE(example_context_t, context);
+    delete AS_TYPE(Account, context);
 }
-example_context_t::~example_context_t()
+Account::~Account()
 {
     check_valid_context();
     balance = 0.0;
     is_initialized = false;
 }
 
-void example_context_t::check_valid_context() const
+void Account::check_valid_context() const
 {
     if (not is_initialized)
     {
@@ -38,31 +38,31 @@ void example_context_t::check_valid_context() const
     }
 }
 
-void example_deposit(example_context_t *context, const double amount)
+void account_deposit(Account *context, const double amount)
 {
-    return AS_TYPE(example_context_t, context)->deposit(amount);
+    return AS_TYPE(Account, context)->deposit(amount);
 }
-void example_context_t::deposit(const double amount)
+void Account::deposit(const double amount)
 {
     check_valid_context();
     balance += amount;
 }
 
-void example_withdraw(example_context_t *context, const double amount)
+void account_withdraw(Account *context, const double amount)
 {
-    return AS_TYPE(example_context_t, context)->withdraw(amount);
+    return AS_TYPE(Account, context)->withdraw(amount);
 }
-void example_context_t::withdraw(const double amount)
+void Account::withdraw(const double amount)
 {
     check_valid_context();
     balance -= amount;
 }
 
-double example_get_balance(const example_context_t *context)
+double account_get_balance(const Account *context)
 {
-    return AS_CTYPE(example_context_t, context)->get_balance();
+    return AS_CTYPE(Account, context)->get_balance();
 }
-double example_context_t::get_balance() const
+double Account::get_balance() const
 {
     check_valid_context();
     return balance;

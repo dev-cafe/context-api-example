@@ -6,11 +6,11 @@ module account_implementation
 
     private
 
-    public example_new
-    public example_free
-    public example_deposit
-    public example_withdraw
-    public example_get_balance
+    public account_new
+    public account_free
+    public account_deposit
+    public account_withdraw
+    public account_get_balance
 
     type :: account
         private
@@ -20,19 +20,19 @@ module account_implementation
 
 contains
 
-    type(c_ptr) function example_new() bind (c)
+    type(c_ptr) function account_new() bind (c)
         use, intrinsic :: iso_c_binding, only: c_loc
         type(account), pointer :: f_context
         type(c_ptr) :: context
 
         allocate(f_context)
         context = c_loc(f_context)
-        example_new = context
+        account_new = context
         f_context%balance = 0.0d0
         f_context%is_initialized = .true.
     end function
 
-    subroutine example_free(context) bind (c)
+    subroutine account_free(context) bind (c)
         use, intrinsic :: iso_c_binding, only: c_f_pointer
         type(c_ptr), value :: context
         type(account), pointer :: f_context
@@ -56,7 +56,7 @@ contains
         end if
     end subroutine
 
-    subroutine example_withdraw(context, amount) bind (c)
+    subroutine account_withdraw(context, amount) bind (c)
         use, intrinsic :: iso_c_binding, only: c_f_pointer
         type(c_ptr), value :: context
         real(c_double), value :: amount
@@ -67,7 +67,7 @@ contains
         f_context%balance = f_context%balance - amount
     end subroutine
 
-    subroutine example_deposit(context, amount) bind (c)
+    subroutine account_deposit(context, amount) bind (c)
         use, intrinsic :: iso_c_binding, only: c_f_pointer
         type(c_ptr), value :: context
         real(c_double), value :: amount
@@ -78,14 +78,14 @@ contains
         f_context%balance = f_context%balance + amount
     end subroutine
 
-    real(c_double) function example_get_balance(context) bind (c)
+    real(c_double) function account_get_balance(context) bind (c)
         use, intrinsic :: iso_c_binding, only: c_f_pointer
         type(c_ptr), value, intent(in) :: context
         type(account), pointer :: f_context
 
         call c_f_pointer(context, f_context)
         call check_valid_context(f_context)
-        example_get_balance = f_context%balance
+        account_get_balance = f_context%balance
     end function
 
 end module
