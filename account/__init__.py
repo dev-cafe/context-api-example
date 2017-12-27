@@ -17,12 +17,12 @@ _include_dir = _this_path
 
 c_lib = get_lib_handle(['-DACCOUNT_API=', '-DACCOUNT_NOINCLUDE'],
                        'account.h',
-                       'c_account',
+                       'account_cpp_implementation',
                        _library_dir,
                        _include_dir)
 
 f_lib = get_lib_handle(['-DACCOUNT_API=', '-DACCOUNT_NOINCLUDE'],
                        'account.h',
-                       'fortran_account',
+                       'account_fortran_implementation',
                        _library_dir,
                        _include_dir)
