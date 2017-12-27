@@ -81,15 +81,15 @@ program test
     call example_withdraw(account1, 50.0d0)
 
     if (example_get_balance(account1) /= 150.0d0) then
-        print *, "test failed"
+        print *, "unexpected balance on account1"
         stop 1
     end if
-    if (example_get_balance(account2) /= 400.0d0) then
-        print *, "test failed"
-        stop 1
-    end if
-
     call example_free(account1)
+
+    if (example_get_balance(account2) /= 400.0d0) then
+        print *, "unexpected balance on account2"
+        stop 1
+    end if
     call example_free(account2)
 
 end program

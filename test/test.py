@@ -12,9 +12,9 @@ def _test_implementation(lib):
     lib.example_withdraw(account1, 50.0)
 
     assert lib.example_get_balance(account1) == 150.0
-    assert lib.example_get_balance(account2) == 400.0
-
     lib.example_free(account1)
+
+    assert lib.example_get_balance(account2) == 400.0
     lib.example_free(account2)
 
 
