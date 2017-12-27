@@ -24,3 +24,11 @@ generate_export_header(
     account_cpp_implementation
     BASE_NAME account
     )
+
+install(
+    TARGETS
+        account_cpp_implementation
+        account_fortran_implementation
+    LIBRARY DESTINATION lib
+    ARCHIVE DESTINATION lib
+    )
