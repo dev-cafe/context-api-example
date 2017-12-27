@@ -15,7 +15,3 @@ add_subdirectory(account)
 # tests
 enable_testing()
 add_subdirectory(test)
-
-# generate c_account_export.h
-include(GenerateExportHeader)
-generate_export_header(c_account)

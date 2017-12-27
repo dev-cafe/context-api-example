@@ -2,8 +2,8 @@
 #define ACCOUNT_H_INCLUDED
 
 #ifndef ACCOUNT_API
-#include "c_account_export.h"
-#define ACCOUNT_API C_ACCOUNT_EXPORT
+#include "account_export.h"
+#define ACCOUNT_API ACCOUNT_EXPORT
 #endif
 
 #ifdef __cplusplus

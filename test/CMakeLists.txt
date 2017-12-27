@@ -2,8 +2,8 @@ add_executable(c_testing_c test.cpp)
 target_include_directories(
     c_testing_c
     PRIVATE
-    ${PROJECT_BINARY_DIR}
     ${PROJECT_SOURCE_DIR}/account
+    ${PROJECT_BINARY_DIR}/account/implementation
     )
 target_link_libraries(c_testing_c c_account)
 
@@ -11,8 +11,8 @@ add_executable(c_testing_fortran test.cpp)
 target_include_directories(
     c_testing_fortran
     PRIVATE
-    ${PROJECT_BINARY_DIR}
     ${PROJECT_SOURCE_DIR}/account
+    ${PROJECT_BINARY_DIR}/account/implementation
     )
 target_link_libraries(c_testing_fortran fortran_account)
 
