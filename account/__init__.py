@@ -1,4 +1,4 @@
-from cffi_helpers import get_lib_handle
+from .cffi_helpers import get_lib_handle
 import os
 import sys
 

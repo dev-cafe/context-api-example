@@ -1,4 +1,4 @@
-def _example(lib):
+def _test_implementation(lib):
     account1 = lib.example_new()
 
     lib.example_deposit(account1, 100.0)
@@ -19,10 +19,10 @@ def _example(lib):
 
 
 def test_fortran():
-    from example import f_lib
-    _example(f_lib)
+    from account import f_lib
+    _test_implementation(f_lib)
 
 
 def test_cpp():
-    from example import c_lib
-    _example(c_lib)
+    from account import c_lib
+    _test_implementation(c_lib)
