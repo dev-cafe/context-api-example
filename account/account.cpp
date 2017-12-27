@@ -39,18 +39,24 @@ void example_context_t::stop_if_uninitialized() const
     }
 }
 
-void example_deposit(example_context_t *context, const double f)
+void example_deposit(example_context_t *context, const double amount)
 {
-    return AS_TYPE(example_context_t, context)->deposit(f);
+    return AS_TYPE(example_context_t, context)->deposit(amount);
 }
-void example_withdraw(example_context_t *context, const double f)
-{
-    return AS_TYPE(example_context_t, context)->deposit(-f);
-}
-void example_context_t::deposit(const double f)
+void example_context_t::deposit(const double amount)
 {
     stop_if_uninitialized();
-    balance += f;
+    balance += amount;
+}
+
+void example_withdraw(example_context_t *context, const double amount)
+{
+    return AS_TYPE(example_context_t, context)->withdraw(amount);
+}
+void example_context_t::withdraw(const double amount)
+{
+    stop_if_uninitialized();
+    balance -= amount;
 }
 
 double example_get_balance(const example_context_t *context)

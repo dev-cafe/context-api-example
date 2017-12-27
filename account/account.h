@@ -16,7 +16,8 @@ class example_context_t
     example_context_t(const example_context_t &rhs) = delete;
     example_context_t &operator=(const example_context_t &rhs) = delete;
 
-    void deposit(const double f);
+    void deposit(const double amount);
+    void withdraw(const double amount);
     double get_balance() const;
 
   private:
@@ -42,10 +43,10 @@ EXAMPLE_API
 void example_free(example_context_t *context);
 
 EXAMPLE_API
-void example_deposit(example_context_t *context, const double f);
+void example_deposit(example_context_t *context, const double amount);
 
 EXAMPLE_API
-void example_withdraw(example_context_t *context, const double f);
+void example_withdraw(example_context_t *context, const double amount);
 
 EXAMPLE_API
 double example_get_balance(const example_context_t *context);
