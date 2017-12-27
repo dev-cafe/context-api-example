@@ -38,6 +38,7 @@ contains
         type(account), pointer :: f_context
 
         call c_f_pointer(context, f_context)
+        call check_valid_context(f_context)
         f_context%balance = 0.0d0
         f_context%is_initialized = .false.
         deallocate(f_context)
