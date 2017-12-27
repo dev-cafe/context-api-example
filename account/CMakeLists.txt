@@ -5,4 +5,4 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 add_subdirectory(implementation)
 
 # fortran interface
-add_library(f_interface account.f90)
+add_library(fortran_c_interface account.f90)
