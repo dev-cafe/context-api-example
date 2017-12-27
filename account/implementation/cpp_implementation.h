@@ -15,7 +15,4 @@ class Account
 
   private:
     double balance;
-
-    void check_valid_context() const;
-    bool is_initialized = false;
 };
