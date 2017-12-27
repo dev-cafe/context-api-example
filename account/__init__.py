@@ -15,13 +15,13 @@ build_dir = get_env('PROJECT_BUILD_DIR')
 include_dir = get_env('PROJECT_INCLUDE_DIR')
 
 c_lib = get_lib_handle(['-DEXAMPLE_API=', '-DEXAMPLE_NOINCLUDE'],
-                       'example.h',
+                       'account.h',
                        'c_example',
                        build_dir,
                        include_dir)
 
 f_lib = get_lib_handle(['-DEXAMPLE_API=', '-DEXAMPLE_NOINCLUDE'],
-                       'example.h',
+                       'account.h',
                        'f_example',
                        build_dir,
                        include_dir)
