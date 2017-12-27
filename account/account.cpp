@@ -30,7 +30,7 @@ example_context_t::~example_context_t()
     is_initialized = false;
 }
 
-void example_context_t::stop_if_uninitialized() const
+void example_context_t::check_valid_context() const
 {
     if (not is_initialized)
     {
@@ -45,7 +45,7 @@ void example_deposit(example_context_t *context, const double amount)
 }
 void example_context_t::deposit(const double amount)
 {
-    stop_if_uninitialized();
+    check_valid_context();
     balance += amount;
 }
 
@@ -55,7 +55,7 @@ void example_withdraw(example_context_t *context, const double amount)
 }
 void example_context_t::withdraw(const double amount)
 {
-    stop_if_uninitialized();
+    check_valid_context();
     balance -= amount;
 }
 
@@ -65,6 +65,6 @@ double example_get_balance(const example_context_t *context)
 }
 double example_context_t::get_balance() const
 {
-    stop_if_uninitialized();
+    check_valid_context();
     return balance;
 }

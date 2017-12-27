@@ -23,7 +23,7 @@ class example_context_t
   private:
     double balance;
 
-    void stop_if_uninitialized() const;
+    void check_valid_context() const;
     bool is_initialized = false;
 };
 #else
