@@ -45,7 +45,7 @@ contains
         is_initialized = .false.
     end subroutine
 
-    subroutine check_that_context_is_initialized()
+    subroutine stop_if_uninitialized()
         if (.not. is_initialized) then
             print *, 'ERROR: context is not initialized'
             stop 1
@@ -58,7 +58,7 @@ contains
         real(c_double), value :: f
         type(account), pointer :: f_context
 
-        call check_that_context_is_initialized()
+        call stop_if_uninitialized()
         call c_f_pointer(context, f_context)
         f_context%balance = f_context%balance + f
     end subroutine
@@ -67,7 +67,7 @@ contains
         type(c_ptr), value :: context
         real(c_double), value :: f
 
-        call check_that_context_is_initialized()
+        call stop_if_uninitialized()
         call example_deposit(context, -f)
     end subroutine
 
@@ -76,7 +76,7 @@ contains
         type(c_ptr), value, intent(in) :: context
         type(account), pointer :: f_context
 
-        call check_that_context_is_initialized()
+        call stop_if_uninitialized()
         call c_f_pointer(context, f_context)
         example_get_balance = f_context%balance
     end function

@@ -15,6 +15,6 @@ class Account
   private:
     double balance;
 
-    void check_that_context_is_initialized() const;
+    void stop_if_uninitialized() const;
     bool is_initialized = false;
 };

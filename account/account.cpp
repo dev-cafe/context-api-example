@@ -31,7 +31,7 @@ Account::~Account()
     is_initialized = false;
 }
 
-void Account::check_that_context_is_initialized() const
+void Account::stop_if_uninitialized() const
 {
     if (not is_initialized)
     {
@@ -50,7 +50,7 @@ void example_withdraw(example_context_t *context, const double f)
 }
 void Account::deposit(const double f)
 {
-    check_that_context_is_initialized();
+    stop_if_uninitialized();
     balance += f;
 }
 
@@ -60,6 +60,6 @@ double example_get_balance(const example_context_t *context)
 }
 double Account::get_balance() const
 {
-    check_that_context_is_initialized();
+    stop_if_uninitialized();
     return balance;
 }
