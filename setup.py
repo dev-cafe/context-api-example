@@ -42,6 +42,7 @@ setup(name='account',
       author='Bruce Wayne',
       author_email='me@example.org',
       url='http://example.org',
+      packages=['account'],
       license='MPL-v2.0',
       install_requires=['cffi'],
       cmdclass={'build': extend_build('account')})
