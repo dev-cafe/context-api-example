@@ -20,12 +20,11 @@ example_context_t::example_context_t()
 
 void example_free(example_context_t *context)
 {
-    if (!context)
-        return;
     delete AS_TYPE(example_context_t, context);
 }
 example_context_t::~example_context_t()
 {
+    check_valid_context();
     balance = 0.0;
     is_initialized = false;
 }
