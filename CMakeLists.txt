@@ -23,12 +23,14 @@ add_executable(c_testing_f test/test.cpp)
 target_link_libraries(c_testing_f f_account)
 add_test(c_testing_f ${PROJECT_BINARY_DIR}/c_testing_f)
 
+add_library(f_interface account/account.f90)
+
 add_executable(f_testing_c test/test.f90)
-target_link_libraries(f_testing_c c_account)
+target_link_libraries(f_testing_c c_account f_interface)
 add_test(f_testing_c ${PROJECT_BINARY_DIR}/f_testing_c)
 
 add_executable(f_testing_f test/test.f90)
-target_link_libraries(f_testing_f f_account)
+target_link_libraries(f_testing_f f_account f_interface)
 add_test(f_testing_f ${PROJECT_BINARY_DIR}/f_testing_f)
 
 include(GenerateExportHeader)
