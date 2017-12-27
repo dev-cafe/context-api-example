@@ -25,6 +25,13 @@ generate_export_header(
     BASE_NAME account
     )
 
+INSTALL(
+    FILES
+        ${PROJECT_BINARY_DIR}/account/implementation/account_export.h
+    DESTINATION
+        include
+    )
+
 install(
     TARGETS
         account_cpp_implementation
