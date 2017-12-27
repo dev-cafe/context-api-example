@@ -39,28 +39,5 @@ $ make test
 ### Test the Python interface
 
 ```shell
-$ PROJECT_BUILD_DIR=$PWD/build PROJECT_INCLUDE_DIR=$PWD/api PYTHONPATH=$PWD/api pytest -vv test/test.py
-```
-
-
-## File description
-
-```
-.
-|-- CMakeLists.txt
-|-- LICENSE
-|-- README.md
-|-- api
-|   |-- cffi_helpers.py  (CFFI boilerplate code)
-|   |-- example.h        (C interface)
-|   `-- example.py       (Python interface)
-|-- requirements.txt
-|-- account
-|   |-- account.cpp      (C++ library)
-|   |-- account.f90      (Fortran library)
-|   `-- account.h        (C++ library)
-`-- test
-    |-- test.cpp         (C++ client)
-    |-- test.f90         (Fortran client)
-    `-- test.py          (Python client)
+$ ACCOUNT_LIBRARY_DIR=$PWD/build/lib ACCOUNT_INCLUDE_DIR=$PWD/account PYTHONPATH=$PWD pytest -vv test/test.py
 ```
