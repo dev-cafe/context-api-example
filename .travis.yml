@@ -58,6 +58,12 @@ script:
   - make test
   - cd ..
   - ACCOUNT_LIBRARY_DIR=$PWD/build/lib ACCOUNT_INCLUDE_DIR=$PWD/account PYTHONPATH=$PWD pytest -vv test/test.py
+  - mkdir test-setup-script
+  - cd test-setup-script
+  - virtualenv venv
+  - source venv/bin/activate
+  - pip install git+https://github.com/bast/context-api-example.git
+  - python -c 'import account'
 
 notifications:
   email: false
