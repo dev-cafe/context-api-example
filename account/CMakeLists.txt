@@ -10,6 +10,7 @@ add_library(fortran_c_interface account.f90)
 INSTALL(
     FILES
         account.h
+        account.f90
     DESTINATION
         include
     )
