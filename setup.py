@@ -38,7 +38,7 @@ def extend_build(package_name):
 
 setup(name='account',
       version='0.0.0',
-      description='Long description in here.',
+      description='Description in here.',
       author='Bruce Wayne',
       author_email='me@example.org',
       url='http://example.org',
