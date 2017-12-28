@@ -1,5 +1,4 @@
-#ifndef ACCOUNT_H_INCLUDED
-#define ACCOUNT_H_INCLUDED
+#pragma once
 
 #ifndef ACCOUNT_API
 #include "account_export.h"
@@ -31,5 +30,3 @@ double account_get_balance(const account_context_t *context);
 #ifdef __cplusplus
 }
 #endif
-
-#endif /* ACCOUNT_H_INCLUDED */
