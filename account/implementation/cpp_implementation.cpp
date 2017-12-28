@@ -1,5 +1,3 @@
-#include <fstream>
-
 #include "cpp_implementation.h"
 
 Account::Account()
