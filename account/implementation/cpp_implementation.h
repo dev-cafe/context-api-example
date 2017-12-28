@@ -15,4 +15,5 @@ class Account
 
   private:
     double balance;
+    bool is_initialized;
 };
