@@ -25,7 +25,7 @@ generate_export_header(
     BASE_NAME account
     )
 
-INSTALL(
+install(
     FILES
         ${PROJECT_BINARY_DIR}/account/implementation/account_export.h
     DESTINATION

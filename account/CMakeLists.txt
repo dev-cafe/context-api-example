@@ -7,7 +7,7 @@ add_subdirectory(implementation)
 # fortran interface
 add_library(fortran_c_interface account.f90)
 
-INSTALL(
+install(
     FILES
         account.h
         account.f90
