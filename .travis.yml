@@ -1,63 +1,51 @@
-language: python
-
 sudo: false
+
+dist: xenial
 
 matrix:
   include:
     - os: linux
       compiler: gcc
-      addons: &gcc49
+      addons:
         apt:
           sources: ['ubuntu-toolchain-r-test']
-          packages: ['g++-4.9', 'gcc-4.9', 'gfortran-4.9']
+          packages: ['g++-7', 'gcc-7', 'gfortran-7']
       env:
-        - CXX='g++-4.9'
-        - CC='gcc-4.9'
-        - FC='gfortran-4.9'
-      python: 2.7
-    - os: linux
-      compiler: gcc
-      addons: &gcc49
-        apt:
-          sources: ['ubuntu-toolchain-r-test']
-          packages: ['g++-4.9', 'gcc-4.9', 'gfortran-4.9']
-      env:
-        - CXX='g++-4.9'
-        - CC='gcc-4.9'
-        - FC='gfortran-4.9'
-      python: 3.6
+        - CXX_COMPILER='g++-7'
+        - C_COMPILER='gcc-7'
+        - FC_COMPILER='gfortran-7'
     - os: osx
-      osx_image: xcode7.3
       compiler: gcc
-      sudo: required
-      language: generic
+      addons:
+        homebrew:
+          packages:
+            - gcc
 
 install:
-  - |
-    if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then
-        # manually install python on osx
-        brew update &> /dev/null
-        brew install python3
-        brew reinstall gcc
-        virtualenv venv
-        source venv/bin/activate
-        pip install -r requirements.txt --upgrade
-    fi
-  - pip install -r requirements.txt --upgrade
-  - python --version
+  - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
+  - bash miniconda.sh -b -p $HOME/miniconda
+  - source "$HOME/miniconda/etc/profile.d/conda.sh"
+  - hash -r
+  - conda config --set always_yes yes --set changeps1 no
+  - conda update -q conda
+  - conda info -a
+  - conda create --name context-api-example python=3.7 pytest cffi pycodestyle cmake -c conda-forge
 
 before_script:
-  - pycodestyle account/
-  - pycodestyle test/test.py
+  - test -n $CXX && unset CXX
+  - test -n $CC && unset CC
+  - test -n $FC && unset FC
 
 script:
-  - mkdir build
+  - conda activate context-api-example
+  - pycodestyle account/
+  - pycodestyle test/test.py
+  - cmake -H. -Bbuild
+  - cmake --build build -- VERBOSE=1
   - cd build
-  - cmake ..
-  - make
-  - make test
+  - ctest
+  - python -m pytest -rws -vv lib/python3.7
   - cd ..
-  - ACCOUNT_LIBRARY_DIR=$PWD/build/lib ACCOUNT_INCLUDE_DIR=$PWD/account PYTHONPATH=$PWD pytest -vv test/test.py
   - mkdir test-setup-script
   - cd test-setup-script
   - virtualenv venv
