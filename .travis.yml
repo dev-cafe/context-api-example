@@ -20,6 +20,10 @@ matrix:
         homebrew:
           packages:
             - gcc
+      env:
+        - CXX_COMPILER='g++'
+        - C_COMPILER='gcc'
+        - FC_COMPILER='gfortran'
 
 install:
   - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
@@ -39,8 +43,8 @@ before_script:
 script:
   - conda activate context-api-example
   - pycodestyle account/
-  - pycodestyle test/test.py
-  - cmake -H. -Bbuild
+  - pycodestyle test/test_account.py
+  - cmake -H. -Bbuild -DCMAKE_CXX_COMPILER=$CXX_COMPILER -DCMAKE_C_COMPILER=$C_COMPILER -DCMAKE_Fortran_COMPILER=$FC_COMPILER
   - cmake --build build -- VERBOSE=1
   - cd build
   - ctest
