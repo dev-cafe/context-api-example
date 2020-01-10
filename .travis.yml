@@ -4,12 +4,10 @@ dist: xenial
 
 language: python
 
-python: 3.7
-
 matrix:
   include:
     - os: linux
-      compiler: gcc
+      python: 3.7
       addons:
         apt:
           packages: ['g++', 'gcc', 'gfortran']
@@ -18,7 +16,6 @@ matrix:
         - C_COMPILER='gcc'
         - FC_COMPILER='gfortran'
     - os: osx
-      compiler: gcc
       addons:
         homebrew:
           packages:
