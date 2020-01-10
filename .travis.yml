@@ -59,6 +59,7 @@ script:
   - cd build
   - ctest
   - python -m pytest -rws -vv lib/python3.7
+  - deactivate
   - cd ..
 # in the remaining part test that we can pip install the code
   - mkdir test-setup-script
