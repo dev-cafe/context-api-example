@@ -38,11 +38,10 @@ install:
     if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
       CMAKE_VERSION="3.14.7"
       echo "-- Installing CMake ${CMAKE_VERSION}"
-      target_path=$HOME/Deps/cmake/$CMAKE_VERSION
+      target_path=$HOME/Deps/cmake
       cmake_url="https://cmake.org/files/v${CMAKE_VERSION%.*}/cmake-${CMAKE_VERSION}-Linux-x86_64.tar.gz"
       mkdir -p "$target_path"
       curl -Ls "$cmake_url" | tar -xz -C "$target_path" --strip-components=1
-      export PATH=$HOME/Deps/cmake/$CMAKE_VERSION/bin${PATH:+:$PATH}
       echo "-- Done with CMake ${CMAKE_VERSION}"
     fi
   - pip install --upgrade pip
@@ -56,6 +55,7 @@ before_script:
   - source $(pipenv --venv)/bin/activate
 
 script:
+  - export PATH=$HOME/Deps/cmake/bin${PATH:+:$PATH}
   - pycodestyle account/
   - pycodestyle test/test_account.py
   - |
