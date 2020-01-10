@@ -2,6 +2,8 @@ sudo: false
 
 dist: xenial
 
+python: 3.7
+
 matrix:
   include:
     - os: linux
@@ -20,32 +22,35 @@ matrix:
         homebrew:
           packages:
             - gcc
+            - cmake
       env:
         - CXX_COMPILER='g++'
         - C_COMPILER='gcc'
         - FC_COMPILER='gfortran'
 
+before_install:
+  - mkdir -p $HOME/Downloads $HOME/Deps
+
 install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-      wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
-    else
-      wget https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O miniconda.sh;
+      CMAKE_VERSION=3.14.7
+      target_path=$HOME/Deps/cmake/$CMAKE_VERSION
+      cmake_url="https://cmake.org/files/v${CMAKE_VERSION%.*}/cmake-${CMAKE_VERSION}-Linux-x86_64.tar.gz"
+      mkdir -p "$target_path"
+      curl -Ls "$cmake_url" | tar -xz -C "$target_path" --strip-components=1
+      export PATH=$HOME/Deps/cmake/$CMAKE_VERSION/bin${PATH:+:$PATH}
     fi
-  - bash miniconda.sh -b -p $HOME/miniconda
-  - source "$HOME/miniconda/etc/profile.d/conda.sh"
-  - hash -r
-  - conda config --set always_yes yes --set changeps1 no
-  - conda update -q conda
-  - conda info -a
-  - conda create --name context-api-example python=3.7 pytest cffi pycodestyle cmake -c conda-forge
+  - pip install --upgrade pip
+  - pip install -U pipenv
+  - pipenv install --dev 
 
 before_script:
   - test -n $CXX && unset CXX
   - test -n $CC && unset CC
   - test -n $FC && unset FC
+  - source $(pipenv --venv)/bin/activate
 
 script:
-  - conda activate context-api-example
   - pycodestyle account/
   - pycodestyle test/test_account.py
   - cmake -H. -Bbuild -DCMAKE_CXX_COMPILER=$CXX_COMPILER -DCMAKE_C_COMPILER=$C_COMPILER -DCMAKE_Fortran_COMPILER=$FC_COMPILER
@@ -53,7 +58,6 @@ script:
   - cd build
   - ctest
   - python -m pytest -rws -vv lib/python3.7
-  - conda deactivate
   - cd ..
 # in the remaining part test that we can pip install the code
   - mkdir test-setup-script
