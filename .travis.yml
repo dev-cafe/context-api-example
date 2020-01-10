@@ -53,13 +53,16 @@ script:
   - cd build
   - ctest
   - python -m pytest -rws -vv lib/python3.7
+  - conda deactivate
   - cd ..
+# in the remaining part test that we can pip install the code
   - mkdir test-setup-script
   - cd test-setup-script
   - virtualenv venv
   - source venv/bin/activate
-  - pip install git+https://github.com/bast/context-api-example.git
+  - pip install /home/travis/build/dev-cafe/context-api-example/
   - python -c 'import account'
+  - deactivate
 
 notifications:
   email: false
