@@ -12,12 +12,11 @@ matrix:
       compiler: gcc
       addons:
         apt:
-          sources: ['ubuntu-toolchain-r-test']
-          packages: ['g++-7', 'gcc-7', 'gfortran-7']
+          packages: ['g++', 'gcc', 'gfortran']
       env:
-        - CXX_COMPILER='g++-7'
-        - C_COMPILER='gcc-7'
-        - FC_COMPILER='gfortran-7'
+        - CXX_COMPILER='g++'
+        - C_COMPILER='gcc'
+        - FC_COMPILER='gfortran'
     - os: osx
       compiler: gcc
       addons:
