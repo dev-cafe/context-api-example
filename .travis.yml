@@ -51,15 +51,17 @@ install:
   - pip install --upgrade pip
   - pip install -U pipenv
   - pipenv install --dev 
-  - export Python_ROOT_DIR="$(pipenv --venv)"
 
 before_script:
   - test -n $CXX && unset CXX
   - test -n $CC && unset CC
   - test -n $FC && unset FC
-  - source ${Python_ROOT_DIR}/bin/activate
+  - source $(pipenv --venv)/bin/activate
 
 script:
+  - echo "pipenv --venv gives $(pipenv --venv)"
+  - Python_ROOT_DIR=$(pipenv --venv)
+  - echo "Python_ROOT_DIR is ${Python_ROOT_DIR}"
   - pycodestyle account/
   - pycodestyle test/test_account.py
   - cmake -H. -Bbuild -DCMAKE_CXX_COMPILER=${CXX_COMPILER} -DCMAKE_C_COMPILER=${C_COMPILER} -DCMAKE_Fortran_COMPILER=${FC_COMPILER} -DPython_ROOT_DIR="${Python_ROOT_DIR}"
