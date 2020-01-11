@@ -61,7 +61,8 @@ before_script:
 script:
   - pycodestyle account/
   - pycodestyle test/test_account.py
-  - cmake -H. -Bbuild -DCMAKE_CXX_COMPILER=${CXX_COMPILER} -DCMAKE_C_COMPILER=${C_COMPILER} -DCMAKE_Fortran_COMPILER=${FC_COMPILER} -DPython_ROOT_DIR="$(pipenv --venv)"
+  - Python_ROOT_DIR="$(pipenv --venv)"
+  - cmake -H. -Bbuild -DCMAKE_CXX_COMPILER=${CXX_COMPILER} -DCMAKE_C_COMPILER=${C_COMPILER} -DCMAKE_Fortran_COMPILER=${FC_COMPILER} -DPython_ROOT_DIR="${Python_ROOT_DIR}"
   - cmake --build build -- VERBOSE=1
   - cd build
   - ctest
