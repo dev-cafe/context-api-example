@@ -16,12 +16,12 @@ matrix:
         - C_COMPILER='gcc'
         - FC_COMPILER='gfortran'
     - os: osx
-      python: 3.7
       addons:
         homebrew:
           packages:
             - gcc
             - cmake
+            - python
       env:
         - CXX_COMPILER='g++'
         - C_COMPILER='gcc'
