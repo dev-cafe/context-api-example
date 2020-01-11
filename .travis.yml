@@ -59,11 +59,9 @@ before_script:
   - source $(pipenv --venv)/bin/activate
 
 script:
-  - echo "ls $(type -P python)"
-  - echo "$(pipenv --venv)"
   - pycodestyle account/
   - pycodestyle test/test_account.py
-  - cmake -H. -Bbuild -DCMAKE_CXX_COMPILER=${CXX_COMPILER} -DCMAKE_C_COMPILER=${C_COMPILER} -DCMAKE_Fortran_COMPILER=${FC_COMPILER}
+  - cmake -H. -Bbuild -DCMAKE_CXX_COMPILER=${CXX_COMPILER} -DCMAKE_C_COMPILER=${C_COMPILER} -DCMAKE_Fortran_COMPILER=${FC_COMPILER} -DPython_ROOT_DIR="$(pipenv --venv)"
   - cmake --build build -- VERBOSE=1
   - cd build
   - ctest
