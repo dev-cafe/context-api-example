@@ -1,6 +1,6 @@
 sudo: false
 
-dist: xenial
+dist: bionic
 
 env:
   global:
@@ -9,23 +9,23 @@ env:
 
 matrix:
   include:
-    - os: linux
+    - name: "Context API example on Linux"
+      os: linux
       language: python
       python: 3.7
-      addons:
-        apt:
-          packages: ['g++', 'gcc', 'gfortran']
       env:
         - CXX_COMPILER='g++'
         - C_COMPILER='gcc'
         - FC_COMPILER='gfortran'
-    - os: osx
+    - name: "Context API example on macOS"
+      os: osx
+      osx_image: xcode11.2  # Python 3.7.4 running on macOS 10.14.4
+      language: shell       # 'language: python' is an error on Travis CI macOS
       addons:
         homebrew:
           packages:
             - gcc
             - cmake
-            - python
       env:
         - CXX_COMPILER='g++'
         - C_COMPILER='gcc'
