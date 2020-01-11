@@ -51,8 +51,6 @@ install:
   - pip install --upgrade pip
   - pip install -U pipenv
   - pipenv install --dev 
-  - echo "pipenv --venv is $(pipenv --venv)"
-  - source $(pipenv --venv)/bin/activate
 
 before_script:
   - test -n $CXX && unset CXX
@@ -60,14 +58,13 @@ before_script:
   - test -n $FC && unset FC
 
 script:
-  - pycodestyle account/
-  - pycodestyle test/test_account.py
-  - cmake -H. -Bbuild -DCMAKE_CXX_COMPILER=${CXX_COMPILER} -DCMAKE_C_COMPILER=${C_COMPILER} -DCMAKE_Fortran_COMPILER=${FC_COMPILER} -DPython_ROOT_DIR="$(which python)/.."
-  - cmake --build build -- VERBOSE=1
+  - pipenv run pycodestyle account/
+  - pipenv run pycodestyle test/test_account.py
+  - pipenv run cmake -H. -Bbuild -DCMAKE_CXX_COMPILER=${CXX_COMPILER} -DCMAKE_C_COMPILER=${C_COMPILER} -DCMAKE_Fortran_COMPILER=${FC_COMPILER}
+  - pipenv run cmake --build build -- VERBOSE=1
   - cd build
   - ctest
-  - python -m pytest -rws -vv lib/python3.7
-  - deactivate
+  - pipenv run python -m pytest -rws -vv lib/python3.7
   - cd ..
 # in the remaining part test that we can pip install the code
   - mkdir test-setup-script
