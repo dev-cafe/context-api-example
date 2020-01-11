@@ -52,6 +52,8 @@ before_script:
   - source $(pipenv --venv)/bin/activate
 
 script:
+  - echo "ls $(type -P python)"
+  - echo "$(pipenv --venv)"
   - export PATH=$HOME/Deps/cmake/bin${PATH:+:$PATH}
   - pycodestyle account/
   - pycodestyle test/test_account.py
